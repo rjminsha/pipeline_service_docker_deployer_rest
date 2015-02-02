@@ -15,11 +15,9 @@
 #   See the License for the specific language governing permissions and
 #********************************************************************************
 
-#####################
-# Run unit tests    #
-#####################
-echo "${label_color}No unit tests cases have been checked in ${no_color}"
-
+#############################################
+# Print information about my environment    #
+#############################################
 echo "********************* REST based  Deploy Script ******************************"
 echo "Registry URL: $REGISTRY_URL"
 echo "Registry Server: $REGISTRY_SERVER"
@@ -33,29 +31,11 @@ echo "EXT_DIR: $EXT_DIR"
 echo "PATH: $PATH"
 echo "******************************************************************************"
 
+pwd 
+ls 
+more build.properties 
 
 #########################
-# Build docker image    #
+# Deploy Container      #
 #########################
-# check if there is a Dockerfile and if so build it
-if [ -f Dockerfile ]; then 
-    echo -e "${label_color}Building ${REGISTRY_URL}/${APPLICATION_NAME}:${APPLICATION_VERSION} ${no_color}"
-    builder_boatyard.sh -t ${REPOSITORY}/${APPLICATION_NAME} -v ${APPLICATION_VERSION} -r ${REGISTRY_SERVER} -b ${BUILDER} --user ${DOCKER_REGISTRY_USER} --password ${API_KEY} --email ${DOCKER_REGISTRY_EMAIL} $WORKSPACE
-    RESULT=$?
-    if [ $RESULT -ne 0 ]; then
-        echo -e "${red}Failed to build and publish image successfully${no_color}"
-        echo -e "${label_color}Please check your REGISTRY_URL and API_KEY settings for the project"
-        exit $RESULT
-    else 
-        echo -e "${green}(docker-builder) Building Docker Image Complete${no_color}"
-    fi 
-else 
-    echo -e "${red}Dockerfile not found in project${no_color}"
-    date >> $archive_dir/timestamp.log
-    exit 1
-fi  
 
-########################################################################################
-# Copy any artifacts that will be needed for deployment and testing to $archive_dir    #
-########################################################################################
-date >> $archive_dir/timestamp.log
