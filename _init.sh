@@ -31,6 +31,11 @@ debugme() {
 }
 export -f debugme 
 
+debugme echo "Current working directory and contents: "
+debugme pwd 
+debugme ls 
+debugme echo
+
 set +e
 
 ########################
@@ -91,8 +96,8 @@ fi
 echo "APPLICATION_VERSION: $APPLICATION_VERSION"
 
 if [ -z $APPLICATION_NAME ]; then 
-    echo -e "${label_color}setting application name to helloworld, please set APPLICATION_NAME in the environment to desired name ${no_color}"
-    export APPLICATION_NAME="helloworld"
+    echo -e "${red}setting application name to helloworld, please set APPLICATION_NAME in the environment to the desired name ${no_color}"
+    exit 1
 fi 
 
 ################################

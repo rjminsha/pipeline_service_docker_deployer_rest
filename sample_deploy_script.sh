@@ -20,7 +20,7 @@
 #####################
 echo "${label_color}No unit tests cases have been checked in ${no_color}"
 
-echo "********************* Sample Build Script *********************************************************"
+echo "********************* REST based  Deploy Script ******************************"
 echo "Registry URL: $REGISTRY_URL"
 echo "Registry Server: $REGISTRY_SERVER"
 echo "My repository: $REPOSITORY"
