@@ -12,31 +12,48 @@
     ],
     "params": [
         {
-            "name": "REGISTRY_URL",
+            "name": "IMAGE_NAME",
             "type": "Text",
-            "required": "true",
-            "label_key": "REGISTRY_URL_KEY",
-            "desc_key": "REGISTRY_URL_DESC"
+            "required": "false",
+            "label_key": "IMAGE_NAME_KEY",
+            "desc_key": "IMAGE_NAME_DESC"
         },        
+        {
+            "name": "CONTAINER_NAME",
+            "type": "Text",
+            "required": "false",
+            "label_key": "CONTAINER_NAME_KEY",
+            "desc_key": "CONTAINER_NAME_KEY"
+        },
         {
             "name": "APPLICATION_NAME",
             "type": "Text",
             "required": "false",
             "label_key": "APPLICATION_NAME_KEY",
             "desc_key": "APPLICATION_NAME_DESC"
-        }
+        },
     ],
     "outputs": [
     ],
     "execution": {
         "type": "JenkinsDocker",
         "shell": "#!/bin/bash \n
-env \n
-echo $EXT_DIR \n
-ls $EXT_DIR \n
-export REGISTRY_URL=#REGISTRY_URL#
+if [ -f build.properties ]; then 
+    . build.properties 
+else 
+    echo \"build.properties not found\"
+fi 
+
 export APPLICATION_NAME=#APPLICATION_NAME#
-env
+export PRODUCTION_NAME=#PRODUCTION_NAME#
+if [ -z $IMAGE_NAME ]; then 
+    echo \"Setting image name to parameter\" 
+    export IMAGE_NAME=#IMAGE_NAME#
+else
+    export IMAGE_NAME
+    echo \"Image name already set in the environment, ignoring parameter\"
+fi 
+
 set +x 
 set +e 
 . $EXT_DIR/_init.sh \n
