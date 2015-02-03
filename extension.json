@@ -45,7 +45,7 @@ else
 fi 
 
 export APPLICATION_NAME=#APPLICATION_NAME#
-export PRODUCTION_NAME=#PRODUCTION_NAME#
+export PRODUCTION_NAME=#CONTAINER_NAME#
 if [ -z $IMAGE_NAME ]; then 
     echo \"Setting image name to parameter\" 
     export IMAGE_NAME=#IMAGE_NAME#
