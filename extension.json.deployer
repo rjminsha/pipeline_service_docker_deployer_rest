@@ -3,8 +3,12 @@
     "version": 1,
     "name_key": "ExtName",
     "desc_key": "ExtDesc",
-    "extension_type": "Build",
+    "extension_type": "Deploy",
     "inputs": [
+        {
+            "type": "Artifacts",
+            "inclusion": "always"
+        },
         {
             "type": "Bluemix",
             "inclusion" : "optional"
@@ -24,6 +28,17 @@
             "required": "false",
             "label_key": "APPLICATION_NAME_KEY",
             "desc_key": "APPLICATION_NAME_DESC"
+        },
+        {
+            "name": "COMMAND",
+            "type": "TextArea",
+            "required": "true",
+            "default_value" : "#!/bin/bash\n
+# default docker deploy script\n
+# put your updates here\n
+sample_build_script.sh\n",
+            "label_key": "COMMAND_KEY",
+            "desc_key": "COMMAND_DESC"
         }
     ],
     "outputs": [
@@ -40,10 +55,10 @@ env
 set +x 
 set +e 
 . $EXT_DIR/_init.sh \n
-cd $EXT_DIR 
-./sample_deploy_script.sh \n"
+/bin/bash -e #COMMAND# \n"
+    }
     },
     "project": "https://hub.jazz.net/project/rjminsha/pipeline_service_docker_deployer_rest",
     "project_example": "https://hub.jazz.net/pipeline/rjminsha/ice-pipeline_demo",
     "project_contact": "rjminsha@us.ibm.com"
-}
+}   
