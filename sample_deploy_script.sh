@@ -56,7 +56,7 @@ fi
 #########################
 # The following will invoke the REST API for the IBM Container Service
 # The commands are packaged as a set of mocha tests
-npm install --silent
+npm install --silent >> npminstall.log
 node_modules/mocha/bin/mocha --reporter=spec --grep="for production" --timeout=120000
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
