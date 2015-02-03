@@ -3,8 +3,12 @@
     "version": 1,
     "name_key": "ExtName",
     "desc_key": "ExtDesc",
-    "extension_type": "Build",
+    "extension_type": "Deploy",
     "inputs": [
+        {
+            "type": "Artifacts",
+            "inclusion" : "always"
+        },        
         {
             "type": "Bluemix",
             "inclusion" : "always"
