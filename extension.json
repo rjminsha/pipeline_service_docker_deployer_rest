@@ -38,6 +38,10 @@
         }
     ],
     "outputs": [
+        {
+            "type": "Artifacts",
+            "inclusion" : "always"
+        }
     ],
     "execution": {
         "type": "JenkinsDocker",
