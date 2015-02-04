@@ -44,11 +44,11 @@ if [ -z $IMAGE_NAME ]; then
         echo "could not find build.properties"
     fi  
     if [ -z $IMAGE_NAME ]; then
-        echo "${red}IMAGE_URL not set.  Set the IMAGE_URL in the environment or provide a Docker build job as input to this deploy job ${no_label}"
+        echo "${red}IMAGE_NAME not set.  Set the IMAGE_NAME in the environment or provide a Docker build job as input to this deploy job ${no_label}"
         exit 1
     fi 
 else 
-    echo "IMAGE_URL: ${IMAGE_NAME}"
+    echo "IMAGE_NAME: ${IMAGE_NAME}"
 fi 
     
 #########################

@@ -167,6 +167,13 @@ if [ $RESULT -ne 0 ]; then
     echo -e "${label_color}Successfully installed IBM Container Service CLI ${no_color}"
 fi 
 
+ice login --key ${API_KEY}
+RESULT=$?
+if [ $RESULT -eq 1 ]; then
+    echo -e "${red}Failed to login to IBM Container Service${no_color}"
+    exit $RESULT
+fi 
+
 ###############################
 # Configure extension PATH    #
 ###############################
