@@ -4,11 +4,7 @@
     "name_key": "ExtName",
     "desc_key": "ExtDesc",
     "extension_type": "Deploy",
-    "inputs": [
-        {
-            "type": "Artifacts",
-            "inclusion" : "always"
-        },        
+    "inputs": [       
         {
             "type": "Bluemix",
             "inclusion" : "always"
@@ -38,10 +34,6 @@
         }
     ],
     "outputs": [
-        {
-            "type": "Artifacts",
-            "inclusion" : "always"
-        }
     ],
     "execution": {
         "type": "JenkinsDocker",
